@@ -1,8 +1,13 @@
 Enpronto::Application.routes.draw do
 
-  get "pages/about"
+  devise_for :users
 
-  get "pages/help"
+  resources :tasks
+
+  match '/about', to: 'pages#about'
+  match 'help', to: 'pages#help'
+  
+  root :to => 'Tasks#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

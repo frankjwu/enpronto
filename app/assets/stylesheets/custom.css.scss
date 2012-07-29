@@ -1,0 +1,46 @@
+@import 'bootstrap';
+
+body {
+padding-top: 60px;
+}
+
+.progress-warning.progress-striped .bar {
+background-color: #FBB450;
+}
+
+.progress-warning.progress .bar {
+background-color: #FAA732;
+}
+
+.entry {
+background-color: #E6EBEA;
+padding: 0px;
+margin-bottom: 20px;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+
+.entry #tools {
+margin-top: 10px;
+width: 70px;
+float:right;
+}
+
+.entry #tools .btn {
+margin-bottom: 5px;
+float:right;
+width: 65px;
+margin-right: 10px;
+}
+
+/* Rails scaffold style compatibility */
+#error_explanation {
+  @extend .alert;
+  @extend .alert-error;
+  @extend .alert-block; /* optional */
+}
+
+.field_with_errors {
+  @extend .control-group.error
+}

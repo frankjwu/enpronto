@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+	<h1>Your tasks</h1>
+
+	<%= render "tasks" %>
+
+<% else %>
+	<%= render "home" %>
+<% end %>
+
+
