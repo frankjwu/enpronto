@@ -6,8 +6,9 @@ class Task < ActiveRecord::Base
   PRIORITY_TYPES = ["Low", "Medium", "High"]
   
   validates :name, :due_date, :priority, :user_id, presence: true
+  validates :name, length: {:maximum => 75}
   validates :priority, :inclusion => PRIORITY_TYPES
-  validate :date_after_today
+  validate :date_after_today, :on => :create
   
   def date_after_today
     if (self.due_date - Time.now).to_i < 0
@@ -33,5 +34,4 @@ class Task < ActiveRecord::Base
       return "warning"
     end
   end
-  
 end

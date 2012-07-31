@@ -14,13 +14,13 @@
 			  <li>
 			    <%= link_to "Low Priority", low_path %>
 			  </li>
-				<li class="nav-header">
+				<li class="nav-header active">
 			    <%= link_to "Complete Tasks", complete_path %>
 			  </li>
 			</ul>
 		</div>
 	</div>
 	<div class="span9">
-		<%= yield %>
+		<%= render "completed_tasks" %>
 	</div>
 </div>

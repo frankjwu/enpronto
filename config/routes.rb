@@ -5,9 +5,14 @@ Enpronto::Application.routes.draw do
   resources :tasks
 
   match '/about', to: 'pages#about'
-  match 'help', to: 'pages#help'
+  match '/help', to: 'pages#help'
   
-  root :to => 'Tasks#index'
+  root :to => 'tasks#index'
+  
+  match '/complete' => 'tasks#complete'
+  match '/high' => 'tasks#high_priority'
+  match '/medium' => 'tasks#medium_priority'
+  match '/low' => 'tasks#low_priority'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

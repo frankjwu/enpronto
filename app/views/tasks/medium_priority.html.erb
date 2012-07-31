@@ -8,7 +8,7 @@
 				<li>
 			    <%= link_to "High Priority", high_path %>
 			  </li>
-			  <li>
+			  <li class="active">
 			    <%= link_to "Medium Priority", medium_path %>
 			  </li>
 			  <li>
@@ -21,6 +21,6 @@
 		</div>
 	</div>
 	<div class="span9">
-		<%= yield %>
+		<%= render "tasks" %>
 	</div>
 </div>

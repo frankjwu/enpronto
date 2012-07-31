@@ -5,3 +5,8 @@ en:
   time:
     formats:
       default: "%A, %B %e, %Y %l:%M %p"
+
+  devise:
+    sessions:
+      signed_in: 'Signed in successfully.'
+      signed_out: ''

@@ -1,38 +1,44 @@
-<% @tasks.each do |task| %>
-<div class="entry row">
-	<div class="span9">
-		<div class="row">
-			<div class="span8">
-				<h3><%= task.name %></h3>
-				<b>Due date:</b> <%= l task.due_date %><br />
-				<b>Timer started:</b> <%= l task.created_at %><br />
-				<b>Priority:</b> <%= task.priority %><br />
-				<% if task.percent >= 100 %>
-		      You are <%= distance_of_time_in_words(Time.now, task.due_date) %> late!
-		    <% else %>
-		      You have <%= distance_of_time_in_words(Time.now, task.due_date) %> to go.
-		    <% end %>
-				<br />
-				
+<% if @tasks.any? %>
+	<% @tasks.each do |task| %>
+	<div class="entry row">
+		<div class="span9">
+			<div class="row">
+				<div class="span8">
+					<h3><span class="label label-info"><%= task.priority %></span> <%= task.name %></h3>
+					<b>Due date:</b> <%= l task.due_date %><br />
+					<b>Timer started:</b> <%= l task.created_at %><br />
+					<% if task.percent >= 100 %>
+			      <h6>You are <%= distance_of_time_in_words(Time.now, task.due_date) %> late!</h6>
+			    <% else %>
+			      <h6>You have <%= distance_of_time_in_words(Time.now, task.due_date) %> to go.</h6>
+			    <% end %>
+
+				</div>
+				<div id="tools">
+		    	<%= link_to "Edit", edit_task_path(task) %> · <%= link_to "Delete", task, confirm: 'Are you sure?', method: :delete %>
+				</div>
 			</div>
-			<div id="tools">
-				<%= link_to edit_task_path(task), class: "btn btn-success" do %>
-					<i class="icon-refresh icon-white"></i> Renew
-				<% end %>
-	    	<%= link_to edit_task_path(task), class: "btn btn-primary" do %>
-					<i class="icon-edit icon-white"></i> Update
-				<% end %>
-	    	<%= link_to task, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger" do %>
-					<i class="icon-trash icon-white"></i> Delete
-				<% end %>
-			</div>
-		</div>
-		<div class="span8">
-			<div class="progress progress-<%= task.bar_color %> progress-striped active">
-				<div class="bar" style="width: <%= task.percent %>%;"></div>
+			<div class="row">
+				<div class="span7">
+					<div class="progress progress-<%= task.bar_color %> progress-striped active">
+						<div class="bar" style="width: <%= task.percent %>%;"></div>
+					</div>
+				</div>
+				<div id="done">
+					<%= link_to task_path(task, "task[complete]" => true), method: :put, class: "btn btn-success" do %>
+						<i class="icon-ok icon-white"></i>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
+	<% end %>
+	<%= link_to "New Task", new_task_path %>
+
+	<%= will_paginate %>
+<% else %>
+<div class="new container">
+	<h1>You have no tasks! How about you create some?</h1><br />
+	<%= link_to "New Task", new_task_path, class: "center btn btn-primary btn-large" %>
 </div>
 <% end %>
-<%= link_to "New Task", new_task_path %>
