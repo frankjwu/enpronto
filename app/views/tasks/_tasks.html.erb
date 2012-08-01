@@ -34,6 +34,9 @@
 	</div>
 	<% end %>
 	<%= link_to "New Task", new_task_path %>
+	<div id="number_completed">
+		<h4>You've completed <%= current_user.tasks.count(:all, :conditions => {:complete => true}) %> tasks with Enpronto!</h4>
+	</div>
 
 	<%= will_paginate %>
 <% else %>

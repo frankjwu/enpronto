@@ -15,3 +15,9 @@
 </div>
 <% end %>
 <%= link_to "New Task", new_task_path %>
+
+<div id="number_completed">
+	<h4>You've completed <%= @tasks.count %> tasks with Enpronto!</h4>
+</div>
+
+<%= will_paginate %>
