@@ -1,23 +1,30 @@
-<% @tasks.each do |task| %>
-<div class="entry row">
-	<div class="span9">
-		<div class="row">
-			<div class="span8">
-				<h3><span class="label label-info"><%= task.priority %></span> <%= task.name %></h3>
-				<b>Due date:</b> <%= l task.due_date %><br />
-				<b>Timer started:</b> <%= l task.created_at %><br />
-				<b>Completed on:</b> <%= l task.updated_at %><br />
-				Completed <%= time_ago_in_words(task.updated_at) %> ago.<br />
-				<br />				
+<% if @tasks.any? %>
+	<% @tasks.each do |task| %>
+	<div class="entry row">
+		<div class="span9">
+			<div class="row">
+				<div class="span8">
+					<h3><span class="label label-info"><%= task.priority %></span> <%= task.name %></h3>
+					<b>Due date:</b> <%= l task.due_date %><br />
+					<b>Timer started:</b> <%= l task.created_at %><br />
+					<b>Completed on:</b> <%= l task.updated_at %><br />
+					Completed <%= time_ago_in_words(task.updated_at) %> ago.<br />
+					<br />				
+				</div>
 			</div>
 		</div>
 	</div>
+	<% end %>
+	<%= link_to "New Task", new_task_path %>
+
+	<div id="number_completed">
+		<h4>You've completed <%= @tasks.count %> tasks with Enpronto!</h4>
+	</div>
+
+	<%= will_paginate %>
+<% else %>
+<div class="new container">
+	<br /><br />
+	<h1>You haven't completed any tasks yet!</h1><br />
 </div>
 <% end %>
-<%= link_to "New Task", new_task_path %>
-
-<div id="number_completed">
-	<h4>You've completed <%= @tasks.count %> tasks with Enpronto!</h4>
-</div>
-
-<%= will_paginate %>
